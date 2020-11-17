@@ -9,8 +9,6 @@ import java.util.List;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-
-
     List<Course> list;
 
     public CourseServiceImpl(){
