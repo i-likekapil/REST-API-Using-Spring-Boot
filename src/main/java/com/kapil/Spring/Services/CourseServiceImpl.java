@@ -1,6 +1,8 @@
 package com.kapil.Spring.Services;
 
+import com.kapil.Spring.Dao.CourseDao;
 import com.kapil.Spring.Entities.Course;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +11,45 @@ import java.util.List;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-    List<Course> list;
+    @Autowired
+    private CourseDao courseDao;
+
+    @Override
+    public List<Course> getCourses() {
+        return courseDao.findAll();
+    }
+
+    @Override
+    public Course getCourse(long courseId) {
+        return courseDao.getOne(courseId);
+    }
+
+    @Override
+    public Course addCourse(Course course) {
+        courseDao.save(course);
+        return course;
+    }
+
+    @Override
+    public void deleteCourse(long courseId) {
+
+        /**
+         * Both are same
+         * Course course = courseDao.getOne(courseId);
+         * courseDao.delete(course);
+         */
+        courseDao.deleteById(courseId);
+    }
+
+    @Override
+    public Course updateCourse(Course course) {
+        courseDao.save(course);
+        return course;
+    }
+}
+
+
+    /*List<Course> list;
 
 
     public CourseServiceImpl(){
@@ -63,5 +103,5 @@ public class CourseServiceImpl implements CourseService {
                 break;
             }
         }
-    }
-}
+    }*/
+
