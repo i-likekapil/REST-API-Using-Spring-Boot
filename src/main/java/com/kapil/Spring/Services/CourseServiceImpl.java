@@ -47,8 +47,8 @@ public class CourseServiceImpl implements CourseService {
     public Course updateCourse(Course course) {
         for(Course c:list){
             if(course.getId() == c.getId()){
-                list.remove(c);
-                list.add(course);
+                c.setTitle(course.getTitle());
+                c.setDescription(course.getDescription());
                 break;
             }
         }
